@@ -8,11 +8,12 @@ height = 600
 mode = 'p'
 vertex = []
 edge = None
-msg='Vertices'
+msg = 'Vertices'
 src = None
 sink = None
-dic={}
-max_flow=0
+dic = {}
+max_flow = 0
+
 
 class Spot:
     def __init__(self, i, j, index):
@@ -76,14 +77,13 @@ def setup():
 
 
 def draw():
-    global mode,dic,max_flow,msg
+    global mode, dic, max_flow, msg
     background(50)
-
 
     if edge != None:
         for i in range(len(edge)):
             for j in range(len(edge)):
-                if edge[i][j] > 0 or (mode in {'r','d'} and edge[j][i] > 0):
+                if edge[i][j] > 0 or (mode in {'r', 'd'} and edge[j][i] > 0):
                     # TODO: edge is drawn here. change colors
                     stroke(Color(255, 0, 147))
                     stroke_weight(4)
@@ -93,10 +93,10 @@ def draw():
                         (vertex[i].i, vertex[i].j), (vertex[j].i, vertex[j].j))
                     fill(Color(255, 0, 147))
                     no_stroke()
-                    if mode not in {'r','d'}:
+                    if mode not in {'r', 'd'}:
                         text(f'{edge[i][j]}', (x, y))
                     else:
-                        if dic.get((i,j))!=None:
+                        if dic.get((i, j)) != None:
                             # print(i,j)
                             text(f'{edge[j][i]}', (x, y))
 
@@ -107,21 +107,21 @@ def draw():
             stroke_weight(4)
             line((start.i, start.j), (mouse_x, mouse_y))
             start.select()
-    
+
     # print(edge)
-    
+
     if mode == 'r':
         for i in range(len(edge)):
             for j in range(len(edge[0])):
-                if edge[i][j]>0:
-                    dic[(i,j)]=True
+                if edge[i][j] > 0:
+                    dic[(i, j)] = True
         max_flow = solution(edge, src.index, sink.index)
         # print(max_flow)
-        msg="Done"
+        msg = "Done"
         mode = 'd'
         no_loop()
-    
-    if mode=='d':
+
+    if mode == 'd':
         fill(255)
         no_stroke()
         text(f'maximum flow:{max_flow}', (width-200, height-20))
