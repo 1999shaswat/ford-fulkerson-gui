@@ -97,7 +97,7 @@ def draw():
                         text(f'{edge[i][j]}', (x, y))
                     else:
                         if dic.get((i,j))!=None:
-                            print(i,j)
+                            # print(i,j)
                             text(f'{edge[j][i]}', (x, y))
 
     for spot in vertex:
@@ -108,7 +108,7 @@ def draw():
             line((start.i, start.j), (mouse_x, mouse_y))
             start.select()
     
-    print(edge)
+    # print(edge)
     
     if mode == 'r':
         for i in range(len(edge)):
@@ -116,7 +116,7 @@ def draw():
                 if edge[i][j]>0:
                     dic[(i,j)]=True
         max_flow = solution(edge, src.index, sink.index)
-        print(max_flow)
+        # print(max_flow)
         msg="Done"
         mode = 'd'
         no_loop()
@@ -129,19 +129,6 @@ def draw():
     fill(255)
     no_stroke()
     text(f'mode:{msg}', (10, height-20))
-    # if mode != 'r' or mode != 'd':
-
-    # for spot in vertex:
-    #     if mode == 'e':
-    #         if start != None and spot == start:
-    #             stroke(Color(255, 0, 147))
-    #             stroke_weight(4)
-    #             line((start.i, start.j), (mouse_x, mouse_y))
-    #             start.select()
-    #         else:
-    #             spot.show()
-    #     else:
-    #         spot.show()
 
 
 start = None
