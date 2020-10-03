@@ -72,7 +72,7 @@ def findclosest():
 
 def setup():
     size(width, height)
-    f = create_font("Arial.ttf", 18)
+    f = create_font("arial.ttf", 18)
     text_font(f)
 
 
